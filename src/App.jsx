@@ -36,10 +36,13 @@ function App() {
 export default App
 */
 import './App.css';
+import Greeting from './Greeting.jsx';
+
 const App = () => {
   return (
     <>
       <h1>Mïnün sóvëllüs</h1>
+      <Greeting prop="4"/>
     </>
   );
 };
