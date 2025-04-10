@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 
 export const MediaRow = (props) => {
-    const {item, setMediaItem} = props;
+    const {item, setSelectedItem} = props;
     return (
+      // TODO: move <tr> element in foreach from Home.jsx here
         <tr key={item.media_id}>
             <td>
                 <img src={item.thumbnail} alt={item.title} />
@@ -13,16 +14,13 @@ export const MediaRow = (props) => {
             <td>{item.filesize}</td>
             <td>{item.media_type}</td>
             <td>
-                <button onClick={(()=>setMediaItem(item))}>VIÊW</button>
-                {/* <Link to="single" state={{ item }}>
-                    Viëw
-                </Link> */}
+                <button onClick={(()=>setSelectedItem(item))}>VIÊW</button>
             </td>
         </tr>
     );
   };
 
-MediaRow.propTypes = {
+MediaRow.propType = {
     item: PropTypes.object.isRequired,
     setMediaItem: PropTypes.func.isRequired,
 };

@@ -1,23 +1,13 @@
-import { Route } from 'react-router-dom';
 import './App.css';
 import Greeting from './Greeting.jsx';
-import Home from './views/Home.jsx';
+import Home from './components/Home.jsx';
 const App = () => {
   return (
-   <>
-    {/* <Router>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/view/:id" element={<SingleView />} />
-          <Route path="/" element={<Home />} />
-        </Route>
-      </Routes>
-    </Router> */}
-    <Home/>
-   </>
-  
+    <>
+      <h1>Mïnün sóvëllüs</h1>
+      {/* <Greeting prop={3} /> */}
+      <Home />
+    </>
   );
 };
 export default App;
