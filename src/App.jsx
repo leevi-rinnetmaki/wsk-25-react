@@ -12,7 +12,7 @@ const App = () => {
     <>
       <h1>{uni}</h1>
       <h1>Mïnün sóvëllüs</h1>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
