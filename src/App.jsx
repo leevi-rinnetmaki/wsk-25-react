@@ -5,6 +5,8 @@ import Upload from './views/Upload.jsx';
 import Layout from './components/Layout.jsx';
 import Single from './views/Single';
 import {BrowserRouter, Routes, Route} from 'react-router';
+import Login from './views/Login.jsx';
+import Logout from './views/Logout.jsx';
 
 const App = () => {
   const uni = String.fromCodePoint(0x30000);
@@ -19,6 +21,8 @@ const App = () => {
             <Route path="profile" element={<Profile />} />
             <Route path="upload" element={<Upload />} />
             <Route path="single" element={<Single />} />
+            <Route path="login" element={<Login />} />
+            <Route path="Logout" element={<Logout />} />
           </Route>
         </Routes>
       </BrowserRouter>

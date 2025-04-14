@@ -30,4 +30,25 @@ const useMedia = () => {
   return {mediaArray};
 };
 
-export default useMedia;
+const useAuthentication = () => {
+  const postLogin = async (inputs) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    const loginResult = await fetchData(
+      import.meta.env.VITE_AUTH_API + '/auth/login',
+      fetchOptions,
+    );
+
+    console.log(loginResult);
+
+    window.localStorage.setItem('token', loginResult.token);
+    window.localStorage.getItem('user', JSON.stringify(loginResult.user));
+    return loginResult;
+  };
+};
+export {useMedia, useAuthentication};
