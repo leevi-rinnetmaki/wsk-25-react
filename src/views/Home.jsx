@@ -1,38 +1,13 @@
 import React from 'react';
 import MediaRow from '../components/MediaRow.jsx';
 import SingleView from '../components/SingleView.jsx';
-import Single from '../views/Single.jsx';
-import {useEffect, useState} from 'react';
-import {fetchData} from '../utils/fetchData';
+import {useState} from 'react';
+import useMedia from '../hooks/apiHooks.js';
 
 const Home = () => {
-  const [mediaArray, setMediaArray] = useState([]);
+  const {mediaArray} = useMedia(); // Destructure mediaArray
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const getMedia = async () => {
-    try {
-      const array = await fetchData(import.meta.env.VITE_MEDIA_API + '/media');
-      setMediaArray(array);
-      const newArray = Promise.all(
-        array.map(async (item) => {
-          const result = await fetchData(
-            import.meta.env.VITE_AUTH_API + '/users/' + item.user_id,
-          );
-          return result;
-        }),
-      );
-
-      console.log(newArray);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    getMedia();
-  }, []);
-
-  console.log(mediaArray);
   return (
     <>
       <h2>My Media</h2>
@@ -62,4 +37,5 @@ const Home = () => {
     </>
   );
 };
+
 export default Home;
