@@ -51,4 +51,23 @@ const useAuthentication = () => {
     return loginResult;
   };
 };
-export {useMedia, useAuthentication};
+
+const useUser = () => {
+  const getUserByToden = async (token) => {
+    const fetchOptions = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer: ${token}`,
+      },
+    };
+    const userResults = await fetchData(
+      import.meta.env.VITE_AUTH_API + '/users/token',
+      fetchOptions,
+    );
+
+    console.log('userResults', userResults);
+  };
+
+  return {getUserByToden /*, postUser*/};
+};
+export {useMedia, useAuthentication, useUser};
