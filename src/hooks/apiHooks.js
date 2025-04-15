@@ -31,6 +31,7 @@ const useMedia = () => {
 };
 
 const useAuthentication = () => {
+  const token = localStorage.getItem;
   const postLogin = async (inputs) => {
     const fetchOptions = {
       method: 'POST',
@@ -47,13 +48,14 @@ const useAuthentication = () => {
     console.log(loginResult);
 
     window.localStorage.setItem('token', loginResult.token);
-    window.localStorage.getItem('user', JSON.stringify(loginResult.user));
+    //window.localStorage.getItem('user', JSON.stringify(loginResult.user));
     return loginResult;
   };
+  return {postLogin};
 };
 
 const useUser = () => {
-  const getUserByToden = async (token) => {
+  const getUserByToken = async (token) => {
     const fetchOptions = {
       headers: {
         'Content-Type': 'application/json',
@@ -68,6 +70,6 @@ const useUser = () => {
     console.log('userResults', userResults);
   };
 
-  return {getUserByToden /*, postUser*/};
+  return {getUserByToken /*, postUser*/};
 };
 export {useMedia, useAuthentication, useUser};

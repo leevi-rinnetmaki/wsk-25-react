@@ -3,17 +3,30 @@ import useForm from '../hooks/FormHooks';
 import {useAuthentication} from '../hooks/apiHooks';
 
 const LoginForm = () => {
-  const {inputs, handleInputChange, handleSubmit} = useForm(() => {
-    const navigate = useNavigate();
-    const initialValues = {
-      username: inputs.username,
-      password: inputs.password,
-    };
-  });
+  const {postLogin} = useAuthentication();
+  const navigate = useNavigate();
+
+  const initialValues = {
+    username: '',
+    password: '',
+  };
+
+  const doLogin = async () => {
+    console.log('login funktiota kutsuttu');
+    console.log(inputs);
+    // TODO: add login functionalities here
+    await postLogin(inputs);
+    navigate('/');
+  };
+
+  const {inputs, handleInputChange, handleSubmit} = useForm(
+    doLogin,
+    initialValues,
+  );
   return (
     <>
       <h1>Login</h1>
-      <form onSubmit={() => {}}>
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="loginuser">Username</label>
           <input
