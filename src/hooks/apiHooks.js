@@ -31,7 +31,6 @@ const useMedia = () => {
 };
 
 const useAuthentication = () => {
-  const token = localStorage.getItem;
   const postLogin = async (inputs) => {
     const fetchOptions = {
       method: 'POST',
@@ -72,4 +71,10 @@ const useUser = () => {
 
   return {getUserByToken /*, postUser*/};
 };
-export {useMedia, useAuthentication, useUser};
+
+const useFile = () => {
+  const postFile = async () => {
+    // TODO: implement the file upload
+  };
+};
+export {useMedia, useAuthentication, useUser, useFile};
