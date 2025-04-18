@@ -13,15 +13,12 @@ const Upload = () => {
     try {
       const token = window.localStorage.getItem('token');
 
-      // Upload the file
       const fileResult = await postFile(file, token);
       console.log('fileResult', fileResult);
 
-      // Upload media metadata
       const mediaResult = await postMedia(fileResult.data, inputs, token);
       console.log('mediaResult', mediaResult);
 
-      // Navigate to the home page after successful upload
       navigate('/');
     } catch (error) {
       console.error('Error during upload:', error);
@@ -33,7 +30,7 @@ const Upload = () => {
   const handleFileChange = (evt) => {
     if (evt.target.files) {
       console.log('Selected file:', evt.target.files[0]);
-      setFile(evt.target.files[0]); // Set the selected file to state
+      setFile(evt.target.files[0]);
     }
   };
 
