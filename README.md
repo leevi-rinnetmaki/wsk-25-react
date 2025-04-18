@@ -11,4 +11,4 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-Open [routing](https://users.metropolia.fi/~leevijr/wsk-routing/) or [hooks](https://users.metropolia.fi/~leevijr/wsk-hooks/) to view it in the browser.
+Open [routing](https://users.metropolia.fi/~leevijr/wsk-routing/) or [hooks](https://users.metropolia.fi/~leevijr/wsk-hooks/) or [upload](https://users.metropolia.fi/~leevijr/wsk-upload/) to view it in the browser.
