@@ -1,9 +1,15 @@
+import {useEffect} from 'react';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import {useUserContext} from '../hooks/contextHooks';
+
 const Logout = () => {
-  const {user, handleLogout} = useUserContext();
-  handleLogout;
+  const {handleLogout} = useUserContext();
+
+  useEffect(() => {
+    handleLogout();
+  }, [handleLogout]);
+
   return (
     <>
       <LoginForm />

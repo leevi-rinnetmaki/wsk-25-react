@@ -4,7 +4,6 @@ import {Link} from 'react-router';
 export const MediaRow = (props) => {
   const {item} = props;
   return (
-    // TODO: move <tr> element in foreach from Home.jsx here
     <tr key={item.media_id}>
       <td>
         <img src={item.thumbnail} alt={item.title} />

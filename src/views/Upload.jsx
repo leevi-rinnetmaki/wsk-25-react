@@ -1,34 +1,39 @@
-import React, {useState} from 'react';
-import useForm from '../hooks/FormHooks';
 import {useFile, useMedia} from '../hooks/apiHooks';
+import useForm from '../hooks/formHooks';
+import {useNavigate} from 'react-router';
+import {useState} from 'react';
 
 const Upload = () => {
   const [file, setFile] = useState(null);
-  const {handleInputChange, handleSubmit} = useForm();
   const {postFile} = useFile();
   const {postMedia} = useMedia();
-
-  /*
-  const handleSubmit = () => {};
-
-  const handleInputChange = () => {};
-  */
-
-  const handleFileChange = (evt) => {
-    if (evt.target.files) {
-      console.log(evt.target.files[0]);
-      // TODO: set the file to state
-      setFile(evt.target.files[0]);
-    }
-  };
+  const navigate = useNavigate();
 
   const doUpload = async () => {
     try {
       const token = window.localStorage.getItem('token');
-      const fileResult = await postFile();
-      const mediaResult = await postMedia(fileResult);
+
+      // Upload the file
+      const fileResult = await postFile(file, token);
+      console.log('fileResult', fileResult);
+
+      // Upload media metadata
+      const mediaResult = await postMedia(fileResult.data, inputs, token);
+      console.log('mediaResult', mediaResult);
+
+      // Navigate to the home page after successful upload
+      navigate('/');
     } catch (error) {
-      console.log(error);
+      console.error('Error during upload:', error);
+    }
+  };
+
+  const {inputs, handleInputChange, handleSubmit} = useForm(doUpload);
+
+  const handleFileChange = (evt) => {
+    if (evt.target.files) {
+      console.log('Selected file:', evt.target.files[0]);
+      setFile(evt.target.files[0]); // Set the selected file to state
     }
   };
 
@@ -43,6 +48,7 @@ const Upload = () => {
             type="text"
             id="title"
             onChange={handleInputChange}
+            required
           />
         </div>
         <div>
@@ -62,21 +68,19 @@ const Upload = () => {
             id="file"
             accept="image/*, video/*"
             onChange={handleFileChange}
+            required
           />
         </div>
         <img
           src={
             file
               ? URL.createObjectURL(file)
-              : 'https://placehold.co/600x400?text=Hello+World'
+              : 'https://placehold.co/600x400?text=Choose+image'
           }
           alt="preview"
           width="200"
         />
-        <button
-          type="submit"
-          disabled={file && inputs?.title.length > 3 ? false : true}
-        >
+        <button type="submit" disabled={!(file && inputs?.title?.length > 3)}>
           Upload
         </button>
       </form>

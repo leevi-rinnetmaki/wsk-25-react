@@ -4,9 +4,11 @@ import {useEffect} from 'react';
 
 export const Layout = () => {
   const {handleAutoLogin, user} = useUserContext();
+
   useEffect(() => {
     handleAutoLogin();
-  }, []); // Call handleAutoLogin when the component mounts
+  }, []);
+
   return (
     <div>
       <nav>
@@ -22,15 +24,15 @@ export const Layout = () => {
               <li>
                 <Link to="/upload">Upload</Link>
               </li>
+              <li>
+                <Link to="/logout">Logout</Link>
+              </li>
             </>
           ) : (
             <li>
               <Link to="/login">Login</Link>
             </li>
           )}
-          <li>
-            <Link to="/logout">Logout</Link>
-          </li>
         </ul>
       </nav>
       <main>

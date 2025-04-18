@@ -7,7 +7,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = localStorage.getItem('token'); // Correctly retrieve the token
+      const token = localStorage.getItem('token');
       if (token) {
         try {
           const userResults = await getUserByToken(token);

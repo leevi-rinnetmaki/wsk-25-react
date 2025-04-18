@@ -1,10 +1,9 @@
 import {useNavigate} from 'react-router';
 import useForm from '../hooks/FormHooks';
-import {useAuthentication} from '../hooks/apiHooks';
 import {useUserContext} from '../hooks/contextHooks';
 
 const LoginForm = () => {
-  const {postLogin} = useAuthentication();
+  const {handleLogin} = useUserContext();
   const navigate = useNavigate();
 
   const initialValues = {
@@ -13,17 +12,27 @@ const LoginForm = () => {
   };
 
   const doLogin = async () => {
-    console.log('login funktiota kutsuttu');
+    console.log('Login function called');
     console.log(inputs);
-    // TODO: add login functionalities here
-    await postLogin(inputs);
-    navigate('/');
+
+    try {
+      await handleLogin(inputs);
+
+      navigate('/');
+    } catch (error) {
+      console.error('Login failed:', error);
+
+      alert(
+        'Login failed. Please check your username and password and try again.',
+      );
+    }
   };
 
   const {inputs, handleInputChange, handleSubmit} = useForm(
     doLogin,
     initialValues,
   );
+
   return (
     <>
       <h1>Login</h1>
@@ -34,9 +43,7 @@ const LoginForm = () => {
             name="username"
             type="text"
             id="loginuser"
-            onChange={(event) => {
-              handleInputChange(event);
-            }}
+            onChange={handleInputChange}
             autoComplete="username"
           />
         </div>
@@ -46,9 +53,7 @@ const LoginForm = () => {
             name="password"
             type="password"
             id="loginpassword"
-            onChange={(event) => {
-              handleInputChange(event);
-            }}
+            onChange={handleInputChange}
             autoComplete="current-password"
           />
         </div>
@@ -57,4 +62,5 @@ const LoginForm = () => {
     </>
   );
 };
+
 export default LoginForm;

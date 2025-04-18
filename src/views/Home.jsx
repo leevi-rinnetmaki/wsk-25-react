@@ -5,7 +5,7 @@ import {useState} from 'react';
 import {useMedia} from '../hooks/apiHooks.js';
 
 const Home = () => {
-  const {mediaArray} = useMedia(); // Destructure mediaArray
+  const {mediaArray} = useMedia();
   const [selectedItem, setSelectedItem] = useState(null);
 
   return (
