@@ -3,6 +3,7 @@ import {useUserContext} from '../hooks/contextHooks';
 import {useEffect} from 'react';
 
 export const Layout = () => {
+  const user = true;
   const {handleAutoLogin} = useUserContext();
   useEffect(() => {
     handleAutoLogin();
