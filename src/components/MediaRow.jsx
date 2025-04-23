@@ -4,12 +4,7 @@ import {Link} from 'react-router';
 export const MediaRow = (props) => {
   const {item} = props;
   return (
-    <tr key={item.media_id} className="*:border-2 *:border-stone-50 m-2">
-      {/* <td>{item.media_id}</td> */}
-      {/* <td>{item.user_id}</td> */}
-      {/* <td>{item.username}</td> */}
-      {/* <td>{item.user_email}</td> */}
-      {/* <td>{item.user_role}</td> */}
+    <tr key={item.media_id} className="*:border-1 *:border-stone-50">
       <td>
         <img src={item.thumbnail} alt={item.title} />
       </td>
@@ -18,11 +13,11 @@ export const MediaRow = (props) => {
       <td>{new Date(item.created_at).toLocaleString('fi-FI')}</td>
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
-      <td className="group hover:bg-amber-200 group-hover:text-stone-900">
+      <td className="group">
         <Link
           to="/single"
           state={{item}}
-          className="block group-hover:bg-amber-200 group-hover:text-stone-900"
+          className="block w-full h-full group-hover:bg-amber-200 group-hover:text-stone-900 border-2"
         >
           Show
         </Link>
