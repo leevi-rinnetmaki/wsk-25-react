@@ -13,7 +13,7 @@ const Home = () => {
       <h2>My Media</h2>
       <table>
         <thead>
-          <tr>
+          <tr className="*:border-2 *:border-stone-50">
             <th>Thumbnail</th>
             <th>Title</th>
             <th>Description</th>

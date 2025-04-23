@@ -1,36 +1,36 @@
 import {BrowserRouter, Routes, Route, Link, Outlet} from 'react-router';
-import {useUserContext} from '../hooks/contextHooks';
+//import {useUserContext} from '../hooks/contextHooks';
 import {useEffect} from 'react';
 
 export const Layout = () => {
   const user = true;
-  const {handleAutoLogin} = useUserContext();
+  //const {handleAutoLogin} = useUserContext();
   useEffect(() => {
-    handleAutoLogin();
+    //handleAutoLogin();
   }, []); // Call handleAutoLogin when the component mounts
   return (
     <div>
       <nav>
-        <ul>
+        <ul className="list-none overflow-hidden bg-stone-900 flex justify-end gap-2">
           <li>
-            <Link to="/">Home</Link>
+            <Link className="block text-stone-50 text-center p-4 hover:bg-stone-600" to="/">Home</Link>
           </li>
           {user ? (
             <>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link className="block text-stone-50 text-center p-4 hover:bg-stone-600" to="/profile">Profile</Link>
               </li>
               <li>
-                <Link to="/upload">Upload</Link>
+                <Link className="block text-stone-50 text-center p-4 hover:bg-stone-600" to="/upload">Upload</Link>
               </li>
             </>
           ) : (
             <li>
-              <Link to="/login">Login</Link>
+              <Link className="block text-stone-50 text-center p-4 hover:bg-stone-600" to="/login">Login</Link>
             </li>
           )}
           <li>
-            <Link to="/logout">Logout</Link>
+            <Link className="block text-stone-50 text-center p-4 hover:bg-stone-600" to="/logout">Logout</Link>
           </li>
         </ul>
       </nav>
